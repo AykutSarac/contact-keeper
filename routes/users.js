@@ -16,6 +16,7 @@ router.post('/', [
     check('password', 'Password is required').not().isEmpty(),
     check('password', 'Password should be longer than 6 characters').isLength({ min: 6 })
 ], async (req, res) => {
+    
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
@@ -48,10 +49,10 @@ router.post('/', [
         jwt.sign(payload, process.env.JWT_SECRET, {
             expiresIn: 86400
         },
-        (err, token) => {
-            if (err) throw err
-            res.json({ token })
-        })
+            (err, token) => {
+                if (err) throw err;
+                res.json({ token })
+            })
 
     } catch (error) {
         console.error(error.msg);
