@@ -1,4 +1,4 @@
-This is a project made while following the course [...]().
+This is a project made while following the course [React Front to Back 2019 on Udemy](https://www.udemy.com/course/modern-react-front-to-back).
 
 # Contact Keeper (MERN STACK)
 Login, register and delete, update and add new contacts.
