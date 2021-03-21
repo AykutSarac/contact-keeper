@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'
+import ContactContext from '../../context/contact/contactContext'
 
 const ContactItem = ({ contact }) => {
+
+    const contactContext = useContext(ContactContext);
+    const { deleteContact, setCurrent } = contactContext;
 
     const { id, name, email, phone, type } = contact;
 
@@ -20,8 +24,8 @@ const ContactItem = ({ contact }) => {
                 </li>)}
             </ul>
             <p>
-                <button className="btn btn-dark btn-sm">Edit</button>
-                <button className="btn btn-dark btn-sm">Delete</button>
+                <button className="btn btn-dark btn-sm" onClick={() => setCurrent(contact)}>Edit</button>
+                <button className="btn btn-primary btn-sm" onClick={() => deleteContact(id)}>Delete</button>
             </p>
         </div>
     )
