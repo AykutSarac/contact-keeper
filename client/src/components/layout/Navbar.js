@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useContext, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { AiOutlineContacts } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import AuthContext from '../../context/auth/authContext'
 
 const Navbar = ({ title }) => {
+
+    const authContext = useContext(AuthContext);
+
+    const { logoutUser, isAuthenticated } = authContext;
+
+    const onLogout = () => {
+        if (isAuthenticated) logoutUser();
+    }
+
     return (
         <div className="navbar bg-primary">
             <Link to="/">
@@ -18,12 +28,23 @@ const Navbar = ({ title }) => {
                 <li>
                     <Link to="/about">About</Link>
                 </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-                <li>
-                    <Link to="/register">Register</Link>
-                </li>
+                {isAuthenticated ? (
+                    <Fragment>
+                        <li>
+                            <Link to="/" onClick={onLogout}>Logout</Link>
+                        </li>
+                    </Fragment>
+
+                ) : (
+                    <Fragment>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="/register">Register</Link>
+                        </li>
+                    </Fragment>
+                )}
             </ul>
         </div>
     )

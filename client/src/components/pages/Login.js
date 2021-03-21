@@ -16,9 +16,12 @@ const Login = (props) => {
             props.history.push('/');
         }
 
-        if (error === "Email and password doesn't match!") setAlert(error, 'danger');
-        clearErrors();
+        if (error === "Email and password doesn't match!") {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
 
+        // eslint-disable-next-line
     }, [error, isAuthenticated, props.history]);
 
     const [user, setUser] = useState({

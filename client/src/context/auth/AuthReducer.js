@@ -9,7 +9,7 @@ import {
     CLEAR_ERRORS
 } from '../types'
 
-export default (state, action) => {
+export const AuthReducer = (state, action) => {
     switch (action.type) {
 
         case USER_LOADED:
@@ -33,6 +33,7 @@ export default (state, action) => {
         case REGISTER_FAIL:
         case AUTH_ERROR:
         case LOGIN_FAIL:
+        case LOGOUT:
             localStorage.removeItem('token');
             return {
                 ...state,
@@ -53,3 +54,5 @@ export default (state, action) => {
             return state;
     }
 }
+
+export default AuthReducer;
