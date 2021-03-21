@@ -6,9 +6,9 @@ import {
     UPDATE_CONTACT,
     FILTER_CONTACTS,
     CLEAR_FILTER
-} from '../types';
+} from '../types'
 
-export default (state, action) => {
+export const ContactReducer = (state, action) => {
     switch (action.type) {
 
         case ADD_CONTACT:
@@ -61,3 +61,4 @@ export default (state, action) => {
             return state;
     }
 }
+export default ContactReducer;

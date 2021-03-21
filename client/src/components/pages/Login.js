@@ -1,19 +1,42 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import AuthContext from '../../context/auth/authContext'
+import AlertContext from '../../context/alert/alertContext'
 
-const Login = () => {
+const Login = (props) => {
+
+    const authContext = useContext(AuthContext);
+    const alertContext = useContext(AlertContext);
+
+    const { setAlert } = alertContext;
+    const { loginUser, error, clearErrors, isAuthenticated } = authContext;
+
+    useEffect(() => {
+
+        if (isAuthenticated) {
+            props.history.push('/');
+        }
+
+        if (error === "Email and password doesn't match!") setAlert(error, 'danger');
+        clearErrors();
+
+    }, [error, isAuthenticated, props.history]);
 
     const [user, setUser] = useState({
         email: '',
-        password: '',
+        password: ''
     });
 
     const { email, password } = user;
 
-    const onChange = (e) => setUser({...user, [e.target.name]: e.target.value});
+    const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('Login submit', user);        
+
+        loginUser({
+            email,
+            password
+        });
     }
 
     return (
