@@ -8,12 +8,12 @@ const ContactItem = ({ contact }) => {
     const contactContext = useContext(ContactContext);
     const { deleteContact, setCurrent } = contactContext;
 
-    const { id, name, email, phone, type } = contact;
+    const { _id, username, email, phone, type } = contact;
 
     return (
         <div className="card bg-light">
             <h3 className="text-primary text-left">
-                { name } <span className={'badge ' + (type === 'professional' ? 'badge-success' : 'badge-primary')}>{type[0].toUpperCase() + type.slice(1)}</span>
+                { username } <span className={'badge ' + (type === 'professional' ? 'badge-success' : 'badge-primary')}>{type[0].toUpperCase() + type.slice(1)}</span>
             </h3>
             <ul className="list">
                 {email && (<li>
@@ -25,7 +25,7 @@ const ContactItem = ({ contact }) => {
             </ul>
             <p>
                 <button className="btn btn-dark btn-sm" onClick={() => setCurrent(contact)}>Edit</button>
-                <button className="btn btn-primary btn-sm" onClick={() => deleteContact(id)}>Delete</button>
+                <button className="btn btn-primary btn-sm" onClick={() => deleteContact(_id)}>Delete</button>
             </p>
         </div>
     )

@@ -27,7 +27,7 @@ try {
 // @access  Private
 
 router.post('/', auth, [
-    check('name', 'Name field cannot be empty').notEmpty(),
+    check('username', 'Name field cannot be empty').notEmpty(),
 
 ], async (req, res) => {
     const errors = validationResult(req);

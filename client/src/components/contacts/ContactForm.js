@@ -12,7 +12,7 @@ const ContactForm = () => {
             setContact(current);
         } else {
             setContact({
-                name: '',
+                username: '',
                 email: '',
                 phone: '',
                 type: 'personal'
@@ -23,13 +23,13 @@ const ContactForm = () => {
 
 
     const [contact, setContact] = useState({
-        name: '',
+        username: '',
         email: '',
         phone: '',
         type: 'personal'
     });
 
-    const { name, email, phone, type } = contact;
+    const { username, email, phone, type } = contact;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -48,7 +48,7 @@ const ContactForm = () => {
     return (
         <form onSubmit={onSubmit}>
             <h2 className="text-primary">Add Contact</h2>
-            <input type="text" placeholder="Name" name="name" value={name} onChange={onChange} />
+            <input type="text" placeholder="Name" name="username" value={username} onChange={onChange} />
             <input type="email" placeholder="Email" name="email" value={email} onChange={onChange} />
             <input type="phone" placeholder="Phone" name="phone" value={phone} onChange={onChange} />
             <h5>Contact Type</h5>
